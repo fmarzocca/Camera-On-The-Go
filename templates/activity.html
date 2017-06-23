@@ -1,0 +1,16 @@
+{% include "header.html" %}
+
+<div id="log">
+{{content|safe}}
+</div>
+<br /><br />
+<p style="clear:both" />
+
+<div class="form">
+	<form method="GET" action="{{ url_for('clearlog')}}">
+	<input type="submit" class="clearlog" value="">
+</form>
+</div>
+{% include 'footer.html' with context%}
+</body>
+</html>

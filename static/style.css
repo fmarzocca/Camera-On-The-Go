@@ -1,0 +1,247 @@
+html{
+	margin: 0;
+	border: 0;
+	padding:0;
+	overflow-y: scroll; /* Keeps page centred in all browsers regardless of content height */
+	-webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+	-ms-text-size-adjust: 100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+	}
+	
+body {
+    background-color: #793826;
+    background-repeat: repeat;
+    color: black;
+    font-family: Arial, sans-serif;
+	font-size:1em;
+	margin:0;
+	padding:0;
+}
+
+html, body { height: 100% }
+
+#logo {
+	height: 100px;
+	padding-top:40px;
+}
+
+div#logo img {
+	display:block;
+	margin:auto;
+	}
+
+h1 {
+	font-size: 2em;
+	color: blue;
+	} 
+
+#wait {
+    display:    none;
+    position:   fixed;
+        z-index:    1000;
+        top:        0;
+        left:       0;
+        height:     100%;
+        width:      100%;
+        background: url('/static/FhHRx.gif'),linear-gradient(
+      					rgba(255, 255, 255, 0.8), 
+      					rgba(255, 255, 255, 0.8)
+   						 );  
+        background-position: 50% 50% ;
+        background-repeat: no-repeat; 
+        opacity: 0.80;
+}
+ 
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+	
+.next {
+    background:url(next.png) no-repeat;
+    cursor:pointer;
+    border:none;
+    width:160px;
+    height:70px;
+}
+
+.update {
+    background:url(update.png) no-repeat;
+    cursor:pointer;
+    border:none;
+    width:160px;
+    height:70px;
+}
+
+    
+    
+.clearlog {
+    background:url(clearlog.png) no-repeat;
+    cursor:pointer;
+    border:none;
+    width:150px;
+    height:25px;
+    border: 1px solid black;
+    border-radius:8px;
+}
+
+
+.start{
+    background:url(copy.png) no-repeat;
+    cursor:pointer;
+    border:none;
+    width:155px;
+    height:100px;
+
+}
+
+.eject{
+    background:url(eject.png) no-repeat;
+    cursor:pointer;
+    border:none;
+    width:85px;
+    height:25px;
+    border: 1px solid black;
+    border-radius:8px;
+    margin-bottom: 10px;
+}
+
+
+#stats {
+  display: flex;
+}
+#stats-block {
+  width: 50%;
+  background: #d2d0cb;
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-top: 10px;
+  border-radius:25px;
+}
+
+#error, #message {
+	background:red;
+	width: 80%;
+	display:table;
+	margin:auto;
+	color: white;
+	border: 1px solid black;
+    padding: 20px;
+    border-radius:25px;
+	}
+	
+#message {
+	background:#d2d0cb;
+	color: black;
+	}
+
+	
+.error-text, .message-text {
+		text-align:center;
+		font-size: 2em;
+		}
+#log {
+	overflow-y: scroll;
+	background:#333333;
+	color: white;
+	margin: auto;
+	width: 80%;
+	height: 400px;
+	padding: 20px;
+	border-radius: 25px;
+}
+
+.copyright {
+	font-size: 50%;
+	}
+
+		
+div.form {
+    display: block;
+    text-align: center;
+    }
+
+#footer {
+     position:fixed;
+    bottom:0;
+    width:100%;
+}
+
+.footer-text {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+  color: #eaeaea;
+}
+
+.footer-texti {
+	text-align: center;
+	margin-bottom: 5px;
+	color: #eaeaea;
+}
+
+/* MENU */
+ul {
+    list-style-type: none;
+    margin: 0 0 0 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #555;
+}
+
+ul {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.menu li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+.menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+.menu li:last-child {
+    border-right: none;
+}
+
+#container {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  margin-top:-10px;
+}
+
+/* end MENU */
+
+@media screen and (max-width: 767px) and (orientation: landscape) {
+
+    #footer {
+        position: relative;
+        top: auto;
+        left: auto;
+        height: auto;
+        margin-top:20px;
+        margin-bottom:20px;
+        padding-top:20px;
+    }
+}

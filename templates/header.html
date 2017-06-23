@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" href='/static/style.css' />
+<script src="/static/jquery.min.js"></script>
+<title>Camera On The Go</title>
+<meta name="viewport" content="width=device-width, initial-scale=.85" />
+</head>
+<body>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(   
+        function () {
+         	
+	$('.poweroff').click(function(event) {
+    	event.preventDefault();
+    	var r=confirm("Do you really want to Power Off the device?");
+    	if (r==true)   {  
+    		alert("Your device is going to power off.\n \
+After pressing OK button, pls wait 7 sec.\n \
+then unplug the device from mains.");
+       		window.location.href = "/poweroff";
+    	}
+	});
+
+});
+</script>
+
+{% if COPYING==True %}
+	<script type="text/javascript" charset="utf-8">
+	alert("The device is currently performing a disk copy!\n Please wait for completion.");
+	</script>
+{% endif %} 
+
+
+<!-- Menu  -->
+<div id="container" style="display:block">
+<strong><nav>
+<ul class="menu">
+  <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
+  <li><a href="{{ url_for('ejectall') }}">Eject All</a></li>
+  <li><a href="{{ url_for('activity') }}">Log</a></li>
+  <li><a href="{{ url_for('update') }}">Update</a></li>
+<!--  <li><a href="{{ url_for('poweroff') }}">Power Off</a></li> -->
+  <li><a href="#" class="poweroff">Power Off</a>
+  
+</ul>
+</strong></nav>
+</div>
+
+<div id="logo"><a href="{{url_for('index')}}"><img src="/static/logo.png" /></a></div>

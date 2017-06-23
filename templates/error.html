@@ -1,0 +1,21 @@
+{% include "header.html" %}
+<div style="display:table; margin:auto">
+</div>
+<div id="error">
+	<div class="error-text"><b>Error!</b><br><br />
+	{{err}}<br />
+	{% if err2 != None %}
+		{{err2}}<br />
+	{% endif %}
+	</div>
+</div>
+<br /><br />
+<p style="clear:both">
+<div class="form">
+	<form method="GET" action="{{ url_for('index')}}">
+	<input type="submit" class="next" value="">
+</form>
+</div>
+</div>
+</body>
+</html>

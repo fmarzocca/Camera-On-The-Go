@@ -1,0 +1,101 @@
+
+{% include "header.html" %}
+<script type="text/javascript" charset="utf-8">
+ $(document).ready(   
+        function () {
+         	
+   $("#submit_button").click(function(){
+			if (checkSourceDest() == false) {
+				return false;
+				}
+			var a = {{sourcestats[2]}};
+			var time= new Date((a*1000/18)*1000);
+			var duration = time.getMinutes();
+			var seconds = time.getSeconds();
+			if (duration < 1) {duration ="less than 1";}
+     		var c = confirm("Start copying " + a +" GB.\nThis will roughly take " + duration+":"+seconds+" min.\nAre you sure?");
+     		if (c == true) {
+      			$("#wait").show();
+        		$.ajax({
+        			url: '/',
+        			data: $("#startcopy").serialize(),
+        			type: "POST",
+        			success: function(response) {
+                		console.log(response);
+                		$("#wait").hide();
+                		alert(response);
+                		window.location.reload();
+            			},
+            		error: function(request) {
+                		console.log(request);
+                		$("#wait").hide();  
+                		alert("Error\n"+request.responseJSON.message);
+            			}
+            		});
+      			}
+   			});
+   			
+   		function checkSourceDest() {
+   			if (parseFloat({{deststats[3]}}) <= parseFloat({{sourcestats[2]}})) {	
+   				alert("Destination disk has not enough free space!");
+   				return false;
+   				}
+   			else {
+   				return true;
+   				}
+   		}
+});   
+ 
+
+
+</script>
+<div id="wait"></div>
+<div style="display:table; margin:auto">
+</div>
+<div id="stats">
+<div id="stats-block">
+<b>Destination Disk:</b><br>
+Name: {{deststats[0]}}<br>
+Total Space: {{deststats[1]}} GB<br />
+Used Space: {{deststats[2]}} GB<br />
+Free Space: {{deststats[3]}} GB<br />
+<div class="form" style="text-align:left; margin-top:10px">
+        <form method="POST" action="{{ url_for('ejectDisk')}}">
+	<input type="hidden" name="disk" value="{{deststats[0]}}">
+        <input type="submit" class="eject" value="">
+</form>
+</div>
+</div>
+<br /><br />
+<div id="stats-block">
+<b>Source Disk:</b><br>
+Name: {{sourcestats[0]}}<br>
+Total Space: {{sourcestats[1]}} GB<br />
+Used Space: {{sourcestats[2]}} GB<br />
+Free Space: {{sourcestats[3]}} GB<br />
+<div class="form" style="text-align:left; margin-top:10px">
+        <form method="post" action="{{ url_for('ejectDisk',disk=sourcestats[0])}}">
+        <input type="hidden" name="disk" value="{{sourcestats[0]}}">
+        <input type="submit" class="eject" value="">
+</form>
+</div>
+
+</div>
+</div>
+<p style="clear:both">
+<div class="form">
+        <form id="startcopy" method="post" >
+        <input type="hidden" name="sourcedisk[]" value={{sourcestats[0]}}>
+		<input type="hidden" name="sourcedisk[]" value={{sourcestats[2]}}> 
+        <input type="hidden" name="destdisk[]" value="{{deststats[0]}}">
+		<input type="hidden" name="destdisk[]" value="{{deststats[3]}}">
+        <input id="submit_button" type="button" class="start" value="">
+	
+</form>
+</div>
+
+{% include 'footer.html' with context%}
+
+</body>
+</html>
+

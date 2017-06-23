@@ -1,0 +1,50 @@
+{% include "header.html" %}
+<script type="text/javascript" charset="utf-8">
+ $(document).ready(   
+        function () {
+         	
+   $("#update_button").click(function(){
+     		var c = confirm("Start updating\nAre you sure?");
+     		if (c == true) {
+      			$("#wait").show();
+        		$.ajax({
+        			url: '/firmware',
+        			data: $("#update").serialize(),
+        			type: "POST",
+        			success: function(response) {
+                		console.log(response);
+                		$("#wait").hide();
+                		alert(response);
+                		window.location.href='/';
+            			},
+            		error: function(request) {
+                		console.log(request);
+                		$("#wait").hide();  
+                		alert("Error\n"+request.responseJSON.message);
+            			}
+            		});
+      			}
+   			});
+   			
+});   
+ 
+
+
+</script>
+<div id="wait"></div>
+<div id="message">
+	<div class="message-text"><br>
+	{{mess|safe}}<br />
+	
+	</div>
+</div>
+<br />
+<p style="clear:both">
+<div class="form">
+	<form method="POST" id="update" action="{{ url_for('firmUpdate')}}">
+	<input id="update_button" type="button" class="update" value="">
+</form>
+</div>
+</div>
+</body>
+</html>
